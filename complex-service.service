@@ -1,0 +1,31 @@
+# Complex systemd unit file: complex-service.service
+
+[Unit]
+Description=Complex Service
+After=network.target
+Requires=remote-fs.target syslog.target
+Wants=nss-lookup.target
+Before=multi-user.target
+ConditionPathExists=/etc/complex-service/complex.conf
+Documentation=https://example.com/complex-service-docs
+
+[Service]
+ExecStartPre=/usr/bin/complex-pre-start
+EnvironmentFile=/etc/complex-service/environment
+ExecStart=/usr/bin/complex-start
+ExecReload=/usr/bin/complex-reload
+ExecStop=/usr/bin/complex-stop
+ExecStopPost=/usr/bin/complex-stop-post
+Restart=on-failure
+User=complexuser
+Group=complexgroup
+RestartSec=10
+TimeoutSec=30
+Type=forking
+PIDFile=/var/run/complex-service.pid
+PrivateTmp=true
+PrivateDevices=true
+
+[Install]
+WantedBy=graphical.target
+

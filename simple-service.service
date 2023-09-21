@@ -1,0 +1,24 @@
+# Complex systemd unit file: complex-service.service
+
+[Unit]
+Description=Simple Service
+After=network.target
+Requires=remote-fs.target syslog.target
+Before=multi-user.target
+ConditionPathExists=/etc/simple-service/complex.conf
+Documentation=https://example.com/complex-service-docs
+
+[Service]
+ExecStartPre=/usr/bin/complex-pre-start
+EnvironmentFile=/etc/complex-service/environment
+ExecStart=/usr/bin/complex-start
+ExecReload=/usr/bin/complex-reload
+ExecStop=/usr/bin/complex-stop
+ExecStopPost=/usr/bin/complex-stop-post
+User=complexuser
+Group=complexgroup
+PIDFile=/var/run/complex-service.pid
+
+[Install]
+WantedBy=graphical.target
+
