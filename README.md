@@ -10,7 +10,7 @@ python3 d2v.py /etc/systemd/system/some-service.service /path/ouput
 *2 files will be in the output, one is the SysVinit script and the other is an explanation file.txt for manually setups if needed...
 Assume: groups ,dependencies, etc...*
 
-*You can see the simple and complex service files and check the ouput with the same name...*
+*You can see the in Examples folder, simple and complex service files and check their ouputs with the same name...*
 
 
 
