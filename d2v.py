@@ -1,6 +1,5 @@
 # Anagnostakis Ioannis GR 2023
-# LONG LIVE SLACKWARE
-# D2V is a converter script, convert systemd service files to sysvinit scripts for Slackware use.
+# converter systemd services to sysvinit scripts for Slackware use.
 
 # Simple to use:
 # python3 d2v.py /etc/systemd/system/some-service.service /path/ouput
@@ -48,12 +47,14 @@ def generate_init_script(unit_file, output_dir):
     """
     unit_data = parse_unit_file(unit_file)
 
-
     service_name = os.path.basename(unit_file).replace('.service', '')
     description = unit_data.get('Description', 'No description available')
     exec_start = unit_data.get('ExecStart', '')
     exec_stop = unit_data.get('ExecStop', '')
 
+    # Modify the exec_start and exec_stop lines to use '/usr/bin/complex start' and '/usr/bin/complex stop'
+    exec_start = exec_start.replace('/usr/bin/complex-start', '/usr/bin/complex start')
+    exec_stop = exec_stop.replace('/usr/bin/complex-stop', '/usr/bin/complex stop')
 
     init_script = f"""#!/bin/sh
 # Init script for {service_name}
@@ -114,10 +115,10 @@ esac
 exit 0
 """
 
-
     output_script = os.path.join(output_dir, service_name)
     with open(output_script, 'w') as f:
         f.write(init_script)
+
 
 def generate_explanation_file(unit_file, output_dir):
     """
@@ -188,4 +189,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
