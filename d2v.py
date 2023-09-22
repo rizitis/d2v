@@ -1,5 +1,6 @@
 # Anagnostakis Ioannis GR 2023
-# converter systemd services to sysvinit scripts for Slackware use.
+# LONG LIVE SLACKWARE
+# D2V is a converter script, convert systemd service files to sysvinit scripts for Slackware use.
 
 # Simple to use:
 # python3 d2v.py /etc/systemd/system/some-service.service /path/ouput
